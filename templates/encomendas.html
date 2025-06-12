@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encomendas - Sistema de Logística</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema Logística de Entregas</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="clientes.html">Clientes</a></li>
+                <li><a href="encomendas.html">Encomendas</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="cadastro-encomenda">
+            <h2>Cadastro de Encomenda</h2>
+            <form id="form-encomenda">
+                <div class="form-group">
+                    <label for="peso">Peso (kg):</label>
+                    <input type="number" id="peso" step="0.01" min="0.01" required>
+                    <span class="error-message" id="peso-error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo">Tipo:</label>
+                    <select id="tipo" required>
+                        <option value="">Selecione...</option>
+                        <option value="documento">Documento</option>
+                        <option value="caixa">Caixa</option>
+                        <option value="palete">Palete</option>
+                    </select>
+                    <span class="error-message" id="tipo-error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descricao">Descrição (opcional):</label>
+                    <textarea id="descricao" maxlength="200" placeholder="Descreva brevemente a encomenda"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="endereco-entrega">Endereço de entrega:</label>
+                    <input type="text" id="endereco-entrega" required minlength="5" placeholder="Rua, número, bairro - Cidade">
+                    <span class="error-message" id="endereco-entrega-error"></span>
+                </div>
+                
+                <button type="submit">Cadastrar Encomenda</button>
+            </form>
+        </section>
+        
+        <section id="lista-encomendas">
+            <h2>Lista de Encomendas</h2>
+            
+            <div class="filtros">
+                <div>
+                    <label for="filtro-tipo">Tipo de Encomenda</label>
+                    <select id="filtro-tipo">
+                        <option value="">Todos os tipos</option>
+                        <option value="documento">Documento</option>
+                        <option value="caixa">Caixa</option>
+                        <option value="palete">Palete</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="peso-minimo">Peso Mínimo (kg)</label>
+                    <input type="number" id="peso-minimo" step="0.01" min="0" placeholder="0,00">
+                </div>
+                
+                <div>
+                    <label for="peso-maximo">Peso Máximo (kg)</label>
+                    <input type="number" id="peso-maximo" step="0.01" min="0" placeholder="0,00">
+                </div>
+                
+                <button id="btn-filtrar-encomendas">Aplicar Filtros</button>
+            </div>
+            
+            <div class="tabela-container">
+                <table id="tabela-encomendas">
+                    <thead>
+                        <tr>
+                            <th>Peso (kg)</th>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Endereço de entrega</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-encomendas">
+                        <!-- Dados serão inseridos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2025</p>
+    </footer>
+    
+    <script type="module" src="../js/encomendas.js"></script>
+</body>
+</html>
