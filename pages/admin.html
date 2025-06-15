@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Área Administrativa</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Área Administrativa</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html"><em>Home</em></a></li>
+        <li><a href="admin.html"><em>Área Administrativa</em></a></li>
+        <li><a href="rastreamento.html"><em>Rastreamento</em></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!--Seção Clientes-->
+    <section id="clientes">
+      <h2>Clientes</h2>
+      <form id="form-clientes">
+        <span>Nome Completo:</span>
+        <input type="text" id="nome" required>
+        <span>CPF/CNPJ:</span>
+        <input type="text" id="cpfCnpj" required>
+        <span>E-mail:</span>
+        <input type="email" id="email" required>
+        <span>Endereço:</span>
+        <input type="text" id="endereco" required>
+      </form>
+      <br>
+        <button type="submit">Cadastrar Cliente</button>
+      </form>
+
+      <h3>Lista de Clientes</h3>
+      <span>Filtros:</span>
+      <input type="text" id="filtro-nome" placeholder="Filtrar por nome" />
+      <input type="text" id="filtro-cpf" placeholder="Filtrar por CPF/CNPJ" />
+      <button id="btn-filtrar-clientes">Filtrar</button>
+
+      <table id="tabela-clientes">
+        <thead>
+          <tr>
+            <br>
+            <th>Nome</th>
+            <br>
+            <th>CPF/CNPJ</th>
+            <th>E-mail</th>
+            <th>Endereço</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!--Seção Encomendas-->
+    <section id="encomendas">
+      <h2>Encomendas</h2>
+      <form id="form-encomendas">
+        <span>Peso da encomenda(kg):</span>
+        <input type="number" id="peso" step="0.01" required>
+        <span>Tipo de encomenda:</span>
+        <select id="tipo" required>
+          <option value="">Selecione</option>
+          <option value="documento">Documento</option>
+          <option value="caixa">Caixa</option>
+          <option value="palete">Palete</option>
+        </select>
+        <span>Descrição da encomenda:</span>
+        <textarea id="descricao" maxlength="200"></textarea>
+        <span>Endereço de entrega:</span>
+        <input type="text" id="endereco-entrega" required>
+      </form>
+        <br>
+        <button type="submit">Cadastrar Encomenda</button>
+      </form>
+
+      <h3>Lista de Encomendas</h3>
+      <span>Tipo de encomenda:</span>
+      <select id="filtro-tipo">
+        <option value="">Selecione</option>
+        <option value="">Todos os tipos</option>
+        <option value="documento">Documento</option>
+        <option value="caixa">Caixa</option>
+        <option value="palete">Palete</option>
+      </select>
+      <span>Peso máximo:</span>
+      <input type="number" id="filtro-peso-max" step="0.01">
+      <span>Peso mínimo:</span>
+      <input type="number" id="filtro-peso-min" step="0.01">
+      <button id="btn-filtrar-encomendas">Filtrar</button>
+    </section>
+
+      <table id="tabela-encomendas">
+        <thead>
+          <tr>
+            <br>
+            <th>Peso</th>
+            <br>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Endereço</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!--Seção Rotas-->
+    <section id="rotas">
+      <h2>Cadastro de Rotas</h2>
+      <form id="form-rotas">
+        <span>Origem (cidade ou centro):</span>
+        <input type="text" id="origem" required>
+        <span>Destino final:</span>
+        <input type="text" id="destino" required>
+        <span>Distância (km):</span>
+        <input type="number" id="distancia" required min="1">
+      </form>
+      <br>
+        <span>Tempo estimado para entrega:</span>
+        <input type="number" id="tempo" min="0">
+        <button type="submit">Cadastrar Rota</button>
+      </form>
+
+      <h3>Lista de Rotas</h3>
+      <span>Filtros:</span>
+      <input type="text" id="filtro-origem" placeholder="Filtrar por origem" />
+      <input type="text" id="filtro-destino" placeholder="Filtrar por destino" />
+      <button id="btn-filtrar-rotas">Filtrar</button>
+
+      <table id="tabela-rotas">
+        <thead>
+          <tr>
+            <br>
+            <th>Origem</th>
+            <br>
+            <th>Centros Intermediários</th>
+            <th>Destino</th>
+            <th>Distância (km)</th>
+            <th>Tempo estimado para entrega(h)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!--Seção Entregas-->
+    <section id="entregas">
+      <h2>Cadastro de Entregas</h2>
+      <form id="form-entregas">
+        <span>Selecione o cliente:</span>
+        <select id="cliente">
+          <option value="">Selecione</option>
+        </select>
+        <span>Selecione a encomenda:</span>
+        <select id="encomenda">
+          <option value="">Selecione</option>
+        </select>
+        <span>Selecione a rota:</span>
+        <select id="rota">
+          <option value="">Selecione</option>
+        </select>
+        <span>Selecione a data estimada para entrega:</span>
+        <input type="date" id="data-estimada" required>
+        <button type="submit">Cadastrar Entrega</button>
+      </form>
+
+      <h3>Lista de Entregas</h3>
+      <span>Filtros:</span>
+      <input type="text" id="filtro-cliente" placeholder="Filtrar por cliente">
+      <input type="text" id="filtro-rota" placeholder="Filtrar por rota">
+      <span>Filtrar por data:</span>
+      <input type="date" id="filtro-data">
+      <span>Filtrar por status de entrega:</span>
+      <select id="filtro-status">
+        <option value="">Todos os status</option>
+        <option value="em_preparo">Em preparo</option>
+        <option value="a_caminho">A caminho</option>
+        <option value="entregue">Entregue</option>
+      </select>
+      <button id="btn-filtrar-entregas">Filtrar</button>
+
+      <table id="tabela-entregas">
+        <thead>
+          <tr>
+            <br>
+            <th>Cliente</th>
+            <br>
+            <th>Encomenda</th>
+            <th>Rota</th>
+            <th>Data Estimada</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Desenvolvido por Thayná Fortunato e Esley Raniele ©2025</p>
+  </footer>
+
+  <script src="js/admin-clientes.js"></script>
+  <script src="js/admin-encomendas.js"></script>
+</body>
+</html>
