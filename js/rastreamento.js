@@ -4,8 +4,8 @@ document.getElementById('form-rastreamento').addEventListener('submit', async (e
   if (!codigo) return;
 
   try {
-    const entrega = await fetch(`/api/entregas/${codigo}`).then(r => r.json());
-    const historico = await fetch(`/api/entregas/${codigo}/historico`).then(r => r.json());
+    const entrega = await fetch(`${API}/entregas/${codigo}`).then(r => r.json());
+    const historico = await fetch(`${API}/entregas/${codigo}/historico`).then(r => r.json());
 
     document.getElementById('status').textContent = entrega.status || 'Status não disponível';
 

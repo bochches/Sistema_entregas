@@ -1,75 +1,73 @@
-document.addEventListener('DOMContentLoaded', () => {
-  carregarOpcoes();
-  carregarEntregas();
+const API = "http://localhost:5500/api";
 
-  document.getElementById('form-entregas').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const entrega = {
-      clienteId: document.getElementById('cliente').value,
-      encomendaId: document.getElementById('encomenda').value,
-      rotaId: document.getElementById('rota').value,
-      dataEstimada: document.getElementById('data-estimada').value
-    };
-
-    await fetch('/api/entregas', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(entrega)
-    });
-
-    document.getElementById('form-entregas').reset();
-    carregarEntregas();
+/* --- util para preencher selects --- */
+async function preencherSelect(id, endpoint, texto) {
+  const lista   = await fetch(`${API}${endpoint}`).then(r => r.json());
+  const select  = document.getElementById(id);
+  select.innerHTML = "<option value=''>Selecione</option>";
+  lista.forEach(obj => {
+    const opt = document.createElement("option");
+    opt.value = obj.id || obj._id || obj.nome || obj.descricao || obj.origem;
+    opt.textContent = texto(obj);
+    select.appendChild(opt);
   });
-
-  document.getElementById('btn-filtrar-entregas').addEventListener('click', carregarEntregas);
-});
-
-async function carregarOpcoes() {
-  await preencherSelect('/api/clientes', 'cliente', 'nome');
-  await preencherSelect('/api/encomendas', 'encomenda', 'descricao');
-  await preencherSelect('/api/rotas', 'rota', r => `${r.origem} → ${r.destino}`);
 }
 
-async function preencherSelect(url, selectId, labelFn) {
-  const res = await fetch(url);
-  const lista = await res.json();
-  const select = document.getElementById(selectId);
-  select.innerHTML = '';
-  lista.forEach(item => {
-    const option = document.createElement('option');
-    option.value = item.id;
-    option.textContent = typeof labelFn === 'function' ? labelFn(item) : item[labelFn];
-    select.appendChild(option);
-  });
+async function carregarOpcoes() {
+  await preencherSelect("cliente",
+                        "/clientes",
+                        c => `${c.nome} (${c.cpfCnpj})`);
+  await preencherSelect("encomenda",
+                        "/encomendas",
+                        e => `${e.tipo} - ${e.peso}kg`);
+  await preencherSelect("rota",
+                        "/rotas",
+                        r => `${r.origem} → ${r.destino}`);
 }
 
 async function carregarEntregas() {
-  const cliente = document.getElementById('filtro-cliente').value;
-  const rota = document.getElementById('filtro-rota').value;
-  const data = document.getElementById('filtro-data').value;
-  const status = document.getElementById('filtro-status').value;
+  const cli   = document.getElementById("filtro-cliente").value.trim();
+  const rota  = document.getElementById("filtro-rota").value.trim();
+  const data  = document.getElementById("filtro-data").value;
+  const stat  = document.getElementById("filtro-status").value;
 
-  let url = '/api/entregas';
-  const query = [];
-  if (cliente) query.push(`cliente=${encodeURIComponent(cliente)}`);
-  if (rota) query.push(`rota=${encodeURIComponent(rota)}`);
-  if (data) query.push(`dataEstimada=${data}`);
-  if (status) query.push(`status=${status}`);
-  if (query.length) url += '?' + query.join('&');
+  let url = `${API}/entregas`;
+  const q = [];
+  if (cli)  q.push(`cliente=${encodeURIComponent(cli)}`);
+  if (rota) q.push(`rota=${encodeURIComponent(rota)}`);
+  if (data) q.push(`data=${data}`);
+  if (stat) q.push(`status=${stat}`);
+  if (q.length) url += "?" + q.join("&");
 
-  const res = await fetch(url);
-  const entregas = await res.json();
-  const tbody = document.querySelector('#tabela-entregas tbody');
-  tbody.innerHTML = '';
-  entregas.forEach(e => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${e.clienteNome || e.clienteId}</td>
-      <td>${e.encomendaDescricao || e.encomendaId}</td>
-      <td>${e.rotaResumo || e.rotaId}</td>
-      <td>${e.dataEstimada}</td>
-      <td>${e.status || 'em_preparo'}</td>
-    `;
-    tbody.appendChild(tr);
-  });
+  const entregas = await fetch(url).then(r => r.json());
+  const tbody = document.querySelector("#tabela-entregas tbody");
+  tbody.innerHTML = "";
+  entregas.forEach(e => tbody.insertAdjacentHTML(
+    "beforeend",
+    `<tr><td>${e.cliente}</td><td>${e.encomenda}</td><td>${e.rota}</td><td>${e.dataEstimada}</td><td>${e.status || "em_preparo"}</td></tr>`));
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await carregarOpcoes();
+  carregarEntregas();
+
+  document.getElementById("btn-filtrar-entregas")
+          .addEventListener("click", carregarEntregas);
+
+  document.getElementById("form-entregas").addEventListener("submit", async e => {
+    e.preventDefault();
+    const nova = {
+      cliente: document.getElementById("cliente").value,
+      encomenda: document.getElementById("encomenda").value,
+      rota: document.getElementById("rota").value,
+      dataEstimada: document.getElementById("data-estimada").value
+    };
+    await fetch(`${API}/entregas`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nova)
+    });
+    e.target.reset();
+    carregarEntregas();
+  });
+});

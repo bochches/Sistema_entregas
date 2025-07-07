@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Área Administrativa</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
   <header>
@@ -30,9 +30,10 @@
         <input type="email" id="email" required>
         <span>Endereço:</span>
         <input type="text" id="endereco" required>
-      </form>
-      <br>
-        <button type="submit">Cadastrar Cliente</button>
+        <br><br>
+        <div class="actions">
+          <button type="submit">Cadastrar Cliente</button>
+        </div>
       </form>
 
       <h3>Lista de Clientes</h3>
@@ -44,9 +45,7 @@
       <table id="tabela-clientes">
         <thead>
           <tr>
-            <br>
             <th>Nome</th>
-            <br>
             <th>CPF/CNPJ</th>
             <th>E-mail</th>
             <th>Endereço</th>
@@ -73,15 +72,13 @@
         <textarea id="descricao" maxlength="200"></textarea>
         <span>Endereço de entrega:</span>
         <input type="text" id="endereco-entrega" required>
-      </form>
-        <br>
+        <br><br>
         <button type="submit">Cadastrar Encomenda</button>
       </form>
 
       <h3>Lista de Encomendas</h3>
       <span>Tipo de encomenda:</span>
       <select id="filtro-tipo">
-        <option value="">Selecione</option>
         <option value="">Todos os tipos</option>
         <option value="documento">Documento</option>
         <option value="caixa">Caixa</option>
@@ -92,14 +89,11 @@
       <span>Peso mínimo:</span>
       <input type="number" id="filtro-peso-min" step="0.01">
       <button id="btn-filtrar-encomendas">Filtrar</button>
-    </section>
 
       <table id="tabela-encomendas">
         <thead>
           <tr>
-            <br>
             <th>Peso</th>
-            <br>
             <th>Tipo</th>
             <th>Descrição</th>
             <th>Endereço</th>
@@ -119,10 +113,9 @@
         <input type="text" id="destino" required>
         <span>Distância (km):</span>
         <input type="number" id="distancia" required min="1">
-      </form>
-      <br>
         <span>Tempo estimado para entrega:</span>
         <input type="number" id="tempo" min="0">
+        <br><br>
         <button type="submit">Cadastrar Rota</button>
       </form>
 
@@ -135,10 +128,7 @@
       <table id="tabela-rotas">
         <thead>
           <tr>
-            <br>
             <th>Origem</th>
-            <br>
-            <th>Centros Intermediários</th>
             <th>Destino</th>
             <th>Distância (km)</th>
             <th>Tempo estimado para entrega(h)</th>
@@ -153,19 +143,14 @@
       <h2>Cadastro de Entregas</h2>
       <form id="form-entregas">
         <span>Selecione o cliente:</span>
-        <select id="cliente">
-          <option value="">Selecione</option>
-        </select>
+        <select id="cliente"><option value="">Selecione</option></select>
         <span>Selecione a encomenda:</span>
-        <select id="encomenda">
-          <option value="">Selecione</option>
-        </select>
+        <select id="encomenda"><option value="">Selecione</option></select>
         <span>Selecione a rota:</span>
-        <select id="rota">
-          <option value="">Selecione</option>
-        </select>
+        <select id="rota"><option value="">Selecione</option></select>
         <span>Selecione a data estimada para entrega:</span>
         <input type="date" id="data-estimada" required>
+        <br><br>
         <button type="submit">Cadastrar Entrega</button>
       </form>
 
@@ -187,9 +172,7 @@
       <table id="tabela-entregas">
         <thead>
           <tr>
-            <br>
             <th>Cliente</th>
-            <br>
             <th>Encomenda</th>
             <th>Rota</th>
             <th>Data Estimada</th>
@@ -205,7 +188,10 @@
     <p>Desenvolvido por Thayná Fortunato e Esley Raniele ©2025</p>
   </footer>
 
-  <script src="js/admin-clientes.js"></script>
-  <script src="js/admin-encomendas.js"></script>
+  <!-- Scripts -->
+  <script src="../js/admin-cliente.js"></script>
+  <script src="../js/admin-encomendas.js"></script>
+  <script src="../js/admin-rotas.js"></script>
+  <script src="../js/admin-entregas.js"></script>
 </body>
 </html>

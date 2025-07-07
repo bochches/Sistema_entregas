@@ -2,9 +2,5 @@
   "clientes": [],
   "encomendas": [],
   "rotas": [],
-  "entregas": [],
-  "centros": [
-    { "id": 1, "nome": "CD São Paulo", "cidade": "São Paulo", "endereco": "Rua A, 123" },
-    { "id": 2, "nome": "CD Rio de Janeiro", "cidade": "Rio de Janeiro", "endereco": "Av. B, 456" }
-  ]
+  "entregas": []
 }
