@@ -1,17 +1,18 @@
 // js/api.js
+const BASE_URL = "http://localhost:5500/api";   // ou http://localhost:5500/api se usar a Opção B
 
-const BASE_URL = "https://localhost:5500/api"; // troque pela URL real da sua API
-
-async function get(endpoint) {
-  const response = await fetch(BASE_URL + endpoint);
-  return response.json();
+export async function apiGet(path) {
+  const res = await fetch(BASE_URL + path);
+  if (!res.ok) throw new Error(`GET ${path} → ${res.status}`);
+  return res.json();
 }
 
-async function post(endpoint, dados) {
-  const response = await fetch(BASE_URL + endpoint, {
+export async function apiPost(path, body) {
+  const res = await fetch(BASE_URL + path, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dados),
+    body: JSON.stringify(body),
   });
-  return response.json();
+  if (!res.ok) throw new Error(`POST ${path} → ${res.status}`);
+  return res.json();
 }
