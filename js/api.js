@@ -1,5 +1,4 @@
-// js/api.js
-const BASE_URL = "http://localhost:5500/api";   // ou http://localhost:5500/api se usar a Opção B
+const BASE_URL = "http://200.133.17.234:5000";   // ou http://172.16.36.31:5000
 
 export async function apiGet(path) {
   const res = await fetch(BASE_URL + path);

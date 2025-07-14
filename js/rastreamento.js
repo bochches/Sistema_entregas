@@ -1,3 +1,5 @@
+const API = 'http://200.133.17.234:5000';
+
 document.getElementById('form-rastreamento').addEventListener('submit', async (e) => {
   e.preventDefault();
   const codigo = document.getElementById('codigo').value.trim();
