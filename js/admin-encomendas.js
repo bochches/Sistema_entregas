@@ -1,9 +1,5 @@
-// js/admin-encomendas.js   ← caminho confirmado
+const API = "http://200.133.17.234:5000";
 
-/* 1) ✅ CONSTANTE GLOBAL PARA A API */
-const API = "http://localhost:5500/api";
-
-/* 2) ✅ FUNÇÕES */
 async function carregarEncomendas() {
   const tipo     = document.getElementById("filtro-tipo").value;
   const pesoMin  = document.getElementById("filtro-peso-min").value || 0;
@@ -31,7 +27,7 @@ async function carregarEncomendas() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  carregarEncomendas();  // API já foi declarada aqui em cima 💡
+  carregarEncomendas(); 
 
   document.getElementById("btn-filtrar-encomendas")
           .addEventListener("click", carregarEncomendas);

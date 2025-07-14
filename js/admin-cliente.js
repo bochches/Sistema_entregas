@@ -1,5 +1,4 @@
-// js/admin-clientes.js
-const BASE = "http://localhost:5500/api";   // ↔️ ajuste se mudou porta
+const BASE = "http://200.133.17.234:5000";  
 
 document.addEventListener("DOMContentLoaded", () => {
   carregarClientes();

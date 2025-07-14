@@ -1,6 +1,5 @@
-const API = "http://localhost:5500/api";
+const API = "http://200.133.17.234:5000";
 
-/* --- util para preencher selects --- */
 async function preencherSelect(id, endpoint, texto) {
   const lista   = await fetch(`${API}${endpoint}`).then(r => r.json());
   const select  = document.getElementById(id);

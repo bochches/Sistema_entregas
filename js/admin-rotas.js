@@ -1,4 +1,4 @@
-const API = "http://localhost:5500/api";
+const API = "http://200.133.17.234:5000";
 
 async function carregarRotas() {
   const origem   = document.getElementById("filtro-origem").value.trim();
