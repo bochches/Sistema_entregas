@@ -1,9 +1,9 @@
-const API = "http://localhost:5500/api";
+const API_ROTAS = "http://200.133.17.234:5000";
 
 async function carregarRotas() {
   const origem   = document.getElementById("filtro-origem").value.trim();
   const destino  = document.getElementById("filtro-destino").value.trim();
-  let url = `${API}/rotas`;
+  let url = `${API_ROTAS}/rotas`;
   const q = [];
   if (origem)  q.push(`origem=${encodeURIComponent(origem)}`);
   if (destino) q.push(`destino=${encodeURIComponent(destino)}`);
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       distancia:  parseFloat(document.getElementById("distancia").value),
       tempoEstimado: parseFloat(document.getElementById("tempo").value) || null
     };
-    await fetch(`${API}/rotas`, {
+    await fetch(`${API_ROTAS}/rotas`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(rota)

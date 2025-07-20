@@ -1,8 +1,7 @@
-const API = "http://localhost:5500/api";
+const API_ENTREGAS = "http://200.133.17.234:5000";
 
-/* --- util para preencher selects --- */
 async function preencherSelect(id, endpoint, texto) {
-  const lista   = await fetch(`${API}${endpoint}`).then(r => r.json());
+  const lista   = await fetch(`${API_ENTREGAS}${endpoint}`).then(r => r.json());
   const select  = document.getElementById(id);
   select.innerHTML = "<option value=''>Selecione</option>";
   lista.forEach(obj => {
@@ -31,7 +30,7 @@ async function carregarEntregas() {
   const data  = document.getElementById("filtro-data").value;
   const stat  = document.getElementById("filtro-status").value;
 
-  let url = `${API}/entregas`;
+  let url = `${API_ENTREGAS}/entregas`;
   const q = [];
   if (cli)  q.push(`cliente=${encodeURIComponent(cli)}`);
   if (rota) q.push(`rota=${encodeURIComponent(rota)}`);
@@ -62,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       rota: document.getElementById("rota").value,
       dataEstimada: document.getElementById("data-estimada").value
     };
-    await fetch(`${API}/entregas`, {
+    await fetch(`${API_ENTREGAS}/entregas`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(nova)
