@@ -7,3 +7,6 @@ TECNOLOGIAS UTILIZADAS:
 -HTML, CSS e JavaScript (Frontend)
 -Node.js (Backend)
 -API REST
+
+COMO RODAR:
+Vá no terminal e digite o primeiro comando: npm install (ele instala as dependências node na sua máquina), logo após escreva npm start, vai aparecer "Sistema rodando na porta: tal", clica nesse link e o site vai abrir em uma aba nova.
